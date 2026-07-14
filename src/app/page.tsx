@@ -5,8 +5,20 @@ import { ModelLoader } from "@/components/ModelLoader";
 import { Chat } from "@/components/Chat";
 
 export default function Home() {
-  const { status, progress, error, messages, isGenerating, availableBackend, activeBackend, load, send } =
-    useGemma();
+  const {
+    status,
+    progress,
+    error,
+    messages,
+    isGenerating,
+    isScanning,
+    availableBackend,
+    activeBackend,
+    load,
+    send,
+    sendImage,
+    stop,
+  } = useGemma();
 
   return (
     <div className="flex flex-col flex-1 items-center px-6 py-16 sm:py-24">
@@ -31,8 +43,11 @@ export default function Home() {
           <Chat
             messages={messages}
             isGenerating={isGenerating}
+            isScanning={isScanning}
             backend={activeBackend}
             onSend={send}
+            onSendImage={sendImage}
+            onStop={stop}
           />
         )}
       </main>
