@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0e14;
+  --surface: #10151d;
+  --surface-raised: #161c26;
+  --foreground: #f3f1ea;
+  --muted: #8b93a1;
+  --hairline: rgba(243, 241, 234, 0.09);
+  --aurora-a: #2dd4bf;
+  --aurora-b: #8b5cf6;
+  --gold: #d4af6a;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-hairline: var(--hairline);
+  --color-aurora-a: var(--aurora-a);
+  --color-aurora-b: var(--aurora-b);
+  --color-gold: var(--gold);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: var(--font-fraunces);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+.aurora-text {
+  background: linear-gradient(120deg, var(--aurora-a), var(--aurora-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.aurora-border {
+  border-image: linear-gradient(120deg, var(--aurora-a), var(--aurora-b)) 1;
+}
+
+.glass-panel {
+  background: color-mix(in oklab, var(--surface) 82%, transparent);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--hairline);
+}
+
+@keyframes aurora-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.aurora-orb {
+  animation: aurora-pulse 2.4s ease-in-out infinite;
 }
